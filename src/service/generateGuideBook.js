@@ -1,3 +1,4 @@
+const os = require("os");
 const path = require("path");
 const fs = require("fs");
 
@@ -50,10 +51,15 @@ const generateGuideBook = async (clientId) => {
       });
     }
 
-    const docxPath = path.join(__dirname, `../generated/${clientId}.docx`);
+    // const docxPath = path.join(__dirname, `../generated/${clientId}.docx`);
 
-    const pdfPath = path.join(__dirname, `../generated/${clientId}.pdf`);
+    // const pdfPath = path.join(__dirname, `../generated/${clientId}.pdf`);
 
+    const tempDir = os.tmpdir();
+
+    const docxPath = path.join(tempDir, `${clientId}.docx`);
+
+    const pdfPath = path.join(tempDir, `${clientId}.pdf`);
     // ====================
     // GENERATE DOCX
     // ====================
