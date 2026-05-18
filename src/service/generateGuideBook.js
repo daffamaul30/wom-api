@@ -1,9 +1,9 @@
 const path = require("path");
 const fs = require("fs");
 
-const Client = require("../models/client");
+const Client = require("../models/Client");
 
-const Event = require("../models/event");
+const Event = require("../models/Event");
 
 const generateDocx = require("./generateDocx");
 
