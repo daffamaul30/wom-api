@@ -1,4 +1,5 @@
 const Client = require("../models/Client");
+const Event = require("../models/Event");
 const deleteOnCloudinary = require("../service/deleteOnCloudinary");
 const generateGuideBook = require("../service/generateGuideBook");
 
@@ -170,16 +171,32 @@ exports.deleteClient = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const deleted = await Client.findByIdAndDelete(id);
+    // ====================
+    // DELETE CLIENT
+    // ====================
 
-    if (!deleted) {
+    const deletedClient = await Client.findByIdAndDelete(id);
+
+    if (!deletedClient) {
       return res.status(404).json({
         message: "Client tidak ditemukan",
       });
     }
 
+    // ====================
+    // DELETE EVENTS
+    // ====================
+
+    await Event.deleteMany({
+      clientId: id,
+    });
+
+    // ====================
+    // RESPONSE
+    // ====================
+
     res.json({
-      message: "Client berhasil dihapus",
+      message: "Client dan seluruh event berhasil dihapus",
     });
   } catch (error) {
     res.status(500).json({
