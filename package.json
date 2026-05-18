@@ -1,0 +1,32 @@
+{
+  "name": "wedding-organizer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@ilovepdf/ilovepdf-nodejs": "^0.3.1",
+    "@prisma/client": "^7.8.0",
+    "axios": "^1.16.1",
+    "cloudinary": "^2.10.0",
+    "cors": "^2.8.6",
+    "docx-templates": "^4.15.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "form-data": "^4.0.5",
+    "fs-extra": "^11.3.5",
+    "mongoose": "^9.6.2",
+    "multer": "^2.1.1",
+    "sharp": "^0.34.5",
+    "streamifier": "^0.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
