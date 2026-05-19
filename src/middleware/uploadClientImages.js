@@ -39,7 +39,7 @@ const processImages = async (req, res, next) => {
 
       const result = await uploadToCloudinary(
         buffer,
-        "wedding_organizer_images/bride",
+        "wedding-organizer/documents/images/bride",
       );
 
       // req.uploadedImages.bridePhoto = result.secure_url;
@@ -57,7 +57,7 @@ const processImages = async (req, res, next) => {
 
       const result = await uploadToCloudinary(
         buffer,
-        "wedding_organizer_images/groom",
+        "wedding-organizer/documents/images/groom",
       );
 
       // req.uploadedImages.groomPhoto = result.secure_url;

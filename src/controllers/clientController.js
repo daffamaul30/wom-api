@@ -172,15 +172,39 @@ exports.deleteClient = async (req, res) => {
     const { id } = req.params;
 
     // ====================
-    // DELETE CLIENT
+    // GET CLIENT
     // ====================
 
-    const deletedClient = await Client.findByIdAndDelete(id);
+    const client = await Client.findById(id);
 
-    if (!deletedClient) {
+    if (!client) {
       return res.status(404).json({
         message: "Client tidak ditemukan",
       });
+    }
+
+    // ====================
+    // DELETE BRIDE PHOTO
+    // ====================
+
+    if (client.bride?.photoPublicId) {
+      await deleteOnCloudinary(client.bride.photoPublicId);
+    }
+
+    // ====================
+    // DELETE GROOM PHOTO
+    // ====================
+
+    if (client.groom?.photoPublicId) {
+      await deleteOnCloudinary(client.groom.photoPublicId);
+    }
+
+    // ====================
+    // DELETE GUIDEBOOK
+    // ====================
+
+    if (client.guideBookPublicId) {
+      await deleteOnCloudinary(client.guideBookPublicId, "raw");
     }
 
     // ====================
@@ -192,11 +216,17 @@ exports.deleteClient = async (req, res) => {
     });
 
     // ====================
+    // DELETE CLIENT
+    // ====================
+
+    await Client.findByIdAndDelete(id);
+
+    // ====================
     // RESPONSE
     // ====================
 
     res.json({
-      message: "Client dan seluruh event berhasil dihapus",
+      message: "Client dan seluruh data berhasil dihapus",
     });
   } catch (error) {
     res.status(500).json({

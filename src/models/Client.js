@@ -21,6 +21,7 @@ const clientSchema = new mongoose.Schema(
       nickname: String, // nama panggilan pengantin wanita
 
       photo: String, // foto pengantin wanita
+      photoPublicId: String, // foto pengantin wanita
 
       childNumber: Number, // urutan anak dalam keluarga
       siblingsTotal: Number, // total saudara kandung
@@ -44,6 +45,7 @@ const clientSchema = new mongoose.Schema(
       nickname: String, // nama panggilan pengantin pria
 
       photo: String, // foto pengantin pria
+      photoPublicId: String, // foto pengantin pria
 
       childNumber: Number, // urutan anak dalam keluarga
       siblingsTotal: Number, // total saudara kandung

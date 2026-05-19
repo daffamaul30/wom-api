@@ -38,8 +38,13 @@ const generateGuideBook = async (clientId) => {
     const akadEvent = events.find((event) => event.eventType === "akad");
     const resepsiEvent = events.find((event) => event.eventType === "resepsi");
 
-    if (!akadEvent || !resepsiEvent) {
-      console.log("Guidebook belum dibuat karena event belum lengkap");
+    // if (!akadEvent || !resepsiEvent) {
+    //   console.log("Guidebook belum dibuat karena event belum lengkap");
+
+    //   return null;
+    // }
+    if (!events || events.length === 0) {
+      console.log("Guidebook belum dibuat karena belum ada event");
 
       return null;
     }
@@ -63,11 +68,7 @@ const generateGuideBook = async (clientId) => {
     // ====================
     // GENERATE DOCX
     // ====================
-    const templateData = refactorFormatTemplate(
-      client,
-      akadEvent,
-      resepsiEvent,
-    );
+    const templateData = refactorFormatTemplate(client, events);
 
     const { buffer } = await generateDocx({
       templatePath: path.join(__dirname, "../templates/panduan-acara.docx"),
